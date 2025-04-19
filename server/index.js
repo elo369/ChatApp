@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000
 
 app.use(
     cors({
-      origin: ["https://chat-app-c7pz.vercel.app",process.env.CLIENT_URL],
+      origin: ["https://chat-app-zf89.vercel.app",process.env.CLIENT_URL],
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE"],
       allowedHeaders: ["Content-Type", "Authorization"],
