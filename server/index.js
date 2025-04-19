@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000
 
 app.use(
     cors({
-      origin: [process.env.CLIENT_URL,"https://chat-app-c7pz.vercel.app"],
+      origin: ["https://chat-app-c7pz.vercel.app",process.env.CLIENT_URL],
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE"],
       allowedHeaders: ["Content-Type", "Authorization"],
@@ -31,6 +31,11 @@ app.get("/",(req,res)=>{
     error:false
 })
 })
+
+app.get("/test", (req, res) => {
+  res.send("Test route working!");
+});
+
 
 server.listen(PORT,()=>{
     console.log(`server run on port ${PORT},${process.env.CLIENT_URL}`)
