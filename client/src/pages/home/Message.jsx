@@ -1,27 +1,33 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
-const Message = ({messageDetails}) => {
+const Message = ({ messageDetails }) => {
   const messageRef = useRef(null);
 
-    const {userProfile,selectedUser} = useSelector((state)=> state.userReducer)
+  const { userProfile, selectedUser } = useSelector((state) => state.userReducer)
 
-    if (!userProfile || !selectedUser) return null;
+  if (!userProfile || !selectedUser) return null;
 
-    useEffect(() => {
-      if (messageRef.current) {
-        messageRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    }, []);
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  const isOwner = userProfile?._id === messageDetails?.senderId;
+
+  const messageClass = isOwner ? "chat-end" : "chat-start";
+  // ${userProfile?._id?.toString() === messageDetails?.senderId?.toString()
+  //   ? "chat-end"
+  //   : "chat-start"
+  // }
   return (
     <>
       <div
         ref={messageRef}
-        className={`chat ${
-          userProfile?._id?.toString() === messageDetails?.senderId?.toString()
-            ? "chat-end"
-            : "chat-start"
-        } text-xs sm:text-base`}
+        className={`chat 
+          ${messageClass}
+           text-xs sm:text-base`}
       >
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
@@ -40,7 +46,7 @@ const Message = ({messageDetails}) => {
         </div>
         <div className="chat-bubble">{messageDetails?.message}</div>
       </div>
-      
+
     </>
   )
 }
