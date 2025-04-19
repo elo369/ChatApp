@@ -25,6 +25,11 @@ app.use("/api/v1/user",useRouter)
 app.use("/api/v1/message",messageRouter)
 app.use(errorMiddleware);
 
+app.use((req, res, next) => {
+  console.log("Incoming request:", req.method, req.url);
+  next();
+});
+
 app.get("/",(req,res)=>{
   res.send({
     activeStatus:true,
