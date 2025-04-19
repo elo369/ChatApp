@@ -6,6 +6,8 @@ const Message = ({messageDetails}) => {
 
     const {userProfile,selectedUser} = useSelector((state)=> state.userReducer)
 
+    if (!userProfile || !selectedUser) return null;
+
     useEffect(() => {
       if (messageRef.current) {
         messageRef.current.scrollIntoView({ behavior: "smooth" });
@@ -16,7 +18,7 @@ const Message = ({messageDetails}) => {
       <div
         ref={messageRef}
         className={`chat ${
-          userProfile?._id === messageDetails?.senderId
+          userProfile?._id?.toString() === messageDetails?.senderId?.toString()
             ? "chat-end"
             : "chat-start"
         } text-xs sm:text-base`}

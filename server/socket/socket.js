@@ -10,7 +10,7 @@ const server = http.createServer(app)
 
 const io = new Server(server,{
     cors:{
-        origin:["https://chat-app-elon.vercel.app",process.env.CLIENT_URL],
+        origin:["https://chat-app-elon.vercel.app",process.env.CLIENT_URL,"http://localhost:5173"],
         methods: ["GET", "POST"],
         credentials: true,
     }
