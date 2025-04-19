@@ -17,10 +17,7 @@ const Message = ({ messageDetails }) => {
   const isOwner = userProfile?._id === messageDetails?.senderId;
 
   const messageClass = isOwner ? "chat-end" : "chat-start";
-  // ${userProfile?._id?.toString() === messageDetails?.senderId?.toString()
-  //   ? "chat-end"
-  //   : "chat-start"
-  // }
+ 
   return (
     <>
       <div
