@@ -26,7 +26,10 @@ app.use("/api/v1/message",messageRouter)
 app.use(errorMiddleware);
 
 app.get("/",(req,res)=>{
-  res.send("backend are ready")
+  res.send({
+    activeStatus:true,
+    error:false
+})
 })
 
 server.listen(PORT,()=>{
