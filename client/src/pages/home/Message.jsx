@@ -40,6 +40,7 @@ const Message = ({messageDetails}) => {
         </div>
         <div className="chat-bubble">{messageDetails?.message}</div>
       </div>
+      
     </>
   )
 }

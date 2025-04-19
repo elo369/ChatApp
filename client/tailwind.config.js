@@ -6,6 +6,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    'chat-start',
+    'chat-end',
+  ],
   theme: {
     extend: {},
   },

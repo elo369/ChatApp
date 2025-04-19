@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { IoSearch } from "react-icons/io5";
 import User from './User.jsx';
-import{useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getOtherUsersThunk, logoutUserThunk } from '../../store/slice/user/user.thunk.js';
 
 const UserSidebar = () => {
-    const [searchValue,setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState("")
     const dispatch = useDispatch()
-    const [users,setUsers] = useState([])
-    const {otherUsers,userProfile} = useSelector((state)=> state.userReducer)
+    const [users, setUsers] = useState([])
+    const { otherUsers, userProfile } = useSelector((state) => state.userReducer)
 
     const handleLogout = async () => {
         await dispatch(logoutUserThunk());
-      };
+    };
 
-    useEffect(()=>{
+    useEffect(() => {
         if (!searchValue) {
             setUsers(otherUsers)
-        }else{
+        } else {
             setUsers(
-                otherUsers.filter((user)=>(
-                    user.userName.toLowerCase().includes(searchValue.toLowerCase()) || 
+                otherUsers.filter((user) => (
+                    user.userName.toLowerCase().includes(searchValue.toLowerCase()) ||
                     user.fullName.toLowerCase().includes(searchValue.toLowerCase())
                 ))
             )
         }
-        console.log("otherUsers",otherUsers)
-    },[searchValue,otherUsers])
-    
+        console.log("otherUsers", otherUsers)
+    }, [searchValue, otherUsers])
 
-    useEffect(()=>{
-        (async()=>(
-          await   dispatch(getOtherUsersThunk())
+
+    useEffect(() => {
+        (async () => (
+            await dispatch(getOtherUsersThunk())
         ))()
 
-    },[])
+    }, [])
 
     return (
         <div className="sm:max-w-[20em] max-w-[10em] w-full h-screen flex flex-col border-r border-r-white/10">
@@ -55,8 +55,8 @@ const UserSidebar = () => {
             </div>
 
             <div className="h-full overflow-y-auto px-3 flex flex-col gap-2">
-                {users?.map((userDetails)=>(
-                    <User key={userDetails?._id} userDetails={userDetails}/>
+                {users?.map((userDetails) => (
+                    <User key={userDetails?._id} userDetails={userDetails} />
                 ))}
             </div>
 
@@ -70,9 +70,10 @@ const UserSidebar = () => {
                     <h2>{userProfile?.userName}</h2>
                 </div>
 
-                <button onClick={handleLogout} className="btn btn-primary btn-sm px-4">
+                <button onClick={handleLogout} className="btn btn-primary p-3 text-[10px]">
                     Logout
                 </button>
+
             </div>
         </div>
     )
