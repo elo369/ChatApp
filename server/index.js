@@ -25,6 +25,10 @@ app.use("/api/v1/user",useRouter)
 app.use("/api/v1/message",messageRouter)
 app.use(errorMiddleware);
 
+app.get("/",(req,res)=>{
+  res.send("backend are ready")
+})
+
 server.listen(PORT,()=>{
     console.log(`server run on port ${PORT},${process.env.CLIENT_URL}`)
 })

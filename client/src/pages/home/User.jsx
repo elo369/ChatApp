@@ -1,20 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedUser } from "../../store/slice/user/user.slice";
 
 const User = ({userDetails}) => {
 
   const {selectedUser} = useSelector((state)=> state.userReducer);
-  const { onlineUsers } = useSelector(state => state.socketReducer);
-  console.log("onlineUsers",onlineUsers)
-  const isUserOnline = onlineUsers?.includes(userDetails._id)
+  // const { onlineUsers } = useSelector(state => state.socketReducer);
+  // console.log("onlineUsers",onlineUsers)
+  // const isUserOnline = onlineUsers?.includes(userDetails._id)
   
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const handleUserClick =async () =>{
-      await dispatch(setSelectedUser(userDetails))
-  }
-  
+    const handleUserClick =async () =>{
+         dispatch(setSelectedUser(userDetails))
+    }
+    
   return (
     <div
       onClick={handleUserClick}
@@ -22,7 +22,7 @@ const User = ({userDetails}) => {
         userDetails?._id === selectedUser?._id && "bg-gray-700"
       }`}
     >
-      <div className={`avatar ${isUserOnline && 'online'}`}>
+      <div className={`avatar`}>
         <div className="w-12 rounded-full">
           <img src={userDetails?.avatar} />
         </div>

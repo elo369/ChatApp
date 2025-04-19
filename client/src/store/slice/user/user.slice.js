@@ -79,6 +79,8 @@ export const userSlice = createSlice({
     });
     builder.addCase(getProfileThunk.rejected, (state, action) => {
       state.screenLoading = false;
+      state.isAuthenticated = false;  
+      state.userProfile = null;   
     });
 
     // get other user

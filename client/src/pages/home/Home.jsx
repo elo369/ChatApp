@@ -18,20 +18,6 @@ const Home = () => {
     dispatch(initializeSocket(userProfile?._id));
   }, [isAuthenticated, userProfile]);
   
-  
-  // useEffect(()=>{
-  //   if(!socket) return 
-  //   socket.on("onlineUsers",(onlineUsers)=>{
-  //     dispatch(setOnlineUsers(onlineUsers))
-  //   })
-  //   socket.on("newMessage",(newMessage)=>{
-  //     dispatch(setNewMessages(newMessage))
-  //   })
-  //   return ()=>{
-  //     socket.close()
-  //   }
-  // },[socket])
-  
   useEffect(()=>{
     if (!socket) return;
 
